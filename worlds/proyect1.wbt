@@ -1,0 +1,116 @@
+#VRML_SIM R2025a utf8
+
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2025a/projects/objects/backgrounds/protos/TexturedBackground.proto"
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2025a/projects/objects/backgrounds/protos/TexturedBackgroundLight.proto"
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2025a/projects/objects/floors/protos/RectangleArena.proto"
+
+WorldInfo {
+}
+Viewpoint {
+  orientation -0.25949327048501214 0.3362447713940045 0.9053191129558605 1.4118401895605432
+  position -0.18770564527135364 -0.7772091049053995 0.4453654545250331
+}
+TexturedBackground {
+}
+TexturedBackgroundLight {
+}
+RectangleArena {
+}
+Robot {
+  children [
+    Lidar {
+      translation 0 0 0.0815
+    }
+    DEF cuerpo Pose {
+      translation 0 0 0.0415
+      children [
+        Shape {
+          appearance PBRAppearance {
+            baseColor 0 1 1
+            roughness 1
+            metalness 0
+          }
+          geometry Cylinder {
+            height 0.08
+            radius 0.045
+          }
+        }
+      ]
+    }
+    DEF rueda1_robot HingeJoint {
+      jointParameters HingeJointParameters {
+        position 3.3698905793097063
+        anchor 0.045 0 0.025
+      }
+      device [
+        RotationalMotor {
+          name "r_motor1"
+        }
+      ]
+      endPoint Solid {
+        translation -4.163336342344337e-17 -0.005657998539380337 0.0493513254778538
+        rotation 1 0 0 3.3698905793097063
+        children [
+          DEF rueda1 Pose {
+            translation 0.05 0 0.025
+            rotation 0 1 0 -1.5707996938995747
+            children [
+              Shape {
+                appearance PBRAppearance {
+                  baseColor 1 0 0
+                }
+                geometry Cylinder {
+                  height 0.01
+                  radius 0.025
+                }
+              }
+            ]
+          }
+        ]
+        boundingObject USE rueda1
+        physics Physics {
+        }
+      }
+    }
+    DEF rueda2_robot HingeJoint {
+      jointParameters HingeJointParameters {
+        position 3.369890579288212
+        anchor -0.045 0 0.025
+      }
+      device [
+        RotationalMotor {
+          name "r_motor2"
+        }
+      ]
+      endPoint Solid {
+        translation 6.245004513516506e-17 -0.005657998538856919 0.04935132547797542
+        rotation 1 0 0 3.369890579288212
+        children [
+          DEF rueda1 Pose {
+            translation -0.05 0 0.025
+            rotation 0 1 0 -1.5707996938995747
+            children [
+              Shape {
+                appearance PBRAppearance {
+                  baseColor 1 0 0
+                }
+                geometry Cylinder {
+                  height 0.01
+                  radius 0.025
+                }
+              }
+            ]
+          }
+        ]
+        name "solid(1)"
+        boundingObject USE rueda1
+        physics Physics {
+        }
+      }
+    }
+  ]
+  boundingObject USE cuerpo
+  physics Physics {
+  }
+  controller "control0"
+}
